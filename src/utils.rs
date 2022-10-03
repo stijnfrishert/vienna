@@ -1,6 +1,6 @@
 macro_rules! gen_unit {
     ($name:ident) => {
-        #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Hash)]
+        #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, PartialOrd, Hash)]
         pub struct $name(fraction::Fraction);
 
         impl $name {
