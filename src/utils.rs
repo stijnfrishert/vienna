@@ -74,7 +74,7 @@ macro_rules! gen_unit {
         }
 
         macro_rules! impl_from {
-            ($type:ident) => {
+            ($type:path) => {
                 impl From<$type> for $name {
                     fn from(value: $type) -> Self {
                         Self(value.into())
@@ -94,6 +94,14 @@ macro_rules! gen_unit {
         impl_from!(u32);
         impl_from!(u64);
         impl_from!(u128);
+
+        impl_from!(fraction::Fraction);
+
+        impl From<$name> for fraction::Fraction {
+            fn from(value: $name) -> Self {
+                value.0
+            }
+        }
     };
 }
 
