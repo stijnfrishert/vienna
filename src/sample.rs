@@ -3,6 +3,9 @@ use fraction::Fraction;
 
 gen_unit!(Sample);
 
+pub const ZERO: Sample = Sample(Fraction::new_raw(0, 1));
+pub const ONE: Sample = Sample(Fraction::new_raw(1, 1));
+
 pub const SR_8000: Sample = Sample(Fraction::new_raw(8000, 1));
 pub const SR_11025: Sample = Sample(Fraction::new_raw(11025, 1));
 pub const SR_16000: Sample = Sample(Fraction::new_raw(16000, 1));
