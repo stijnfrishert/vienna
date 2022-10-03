@@ -20,7 +20,8 @@ pub const BPM_128: Beat = Beat(Fraction::new_raw(128, 1));
 
 impl Beat {
     pub fn to_second(&self, bpm: Beat) -> Second {
-        Second::from(Fraction::new(60u64, 1u64) / bpm.0 * self.0)
+        let frac = Fraction::new(60u64, 1u64) / bpm.0;
+        Second::from(frac * self.0)
     }
 
     pub fn to_sample(&self, bpm: Beat, sample_rate: Sample) -> Sample {
@@ -32,17 +33,21 @@ impl Beat {
 mod tests {
     use super::*;
     use crate::{
-        sample::{SR_22050, SR_44100},
-        second::HALF_SECOND,
+        sample::{SR_11025, SR_22050, SR_44100},
+        second::{HALF_SECOND, QUARTER_SECOND, SECOND},
     };
 
     #[test]
     fn to_second() {
+        assert_eq!(HALF.to_second(BPM_120), SECOND);
         assert_eq!(QUARTER.to_second(BPM_120), HALF_SECOND);
+        assert_eq!(EIGHTH.to_second(BPM_120), QUARTER_SECOND);
     }
 
     #[test]
     fn to_sample() {
+        assert_eq!(HALF.to_sample(BPM_120, SR_44100), SR_44100);
         assert_eq!(QUARTER.to_sample(BPM_120, SR_44100), SR_22050);
+        assert_eq!(EIGHTH.to_sample(BPM_120, SR_44100), SR_11025);
     }
 }
