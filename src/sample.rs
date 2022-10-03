@@ -1,4 +1,4 @@
-use crate::{second::Second, utils::gen_unit};
+use crate::{beat::Beat, second::Second, utils::gen_unit};
 use fraction::Fraction;
 
 gen_unit!(Sample);
@@ -20,15 +20,24 @@ impl Sample {
     pub fn to_second(&self, sample_rate: Sample) -> Second {
         Second::from(self.0 / sample_rate.0)
     }
+
+    pub fn to_beat(&self, sample_rate: Sample, bpm: Beat) -> Beat {
+        self.to_second(sample_rate).to_beat(bpm)
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::second::HALF_SECOND;
+    use crate::{beat::QUARTER, second::HALF_SECOND};
 
     #[test]
     fn to_second() {
         assert_eq!(SR_22050.to_second(SR_44100), HALF_SECOND);
+    }
+
+    #[test]
+    fn to_beat() {
+        assert_eq!(SR_22050.to_beat(SR_44100, Beat::new(120, 1)), QUARTER);
     }
 }
