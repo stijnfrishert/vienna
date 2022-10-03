@@ -27,13 +27,13 @@ impl Second {
 mod tests {
     use super::*;
     use crate::{
-        beat::QUARTER,
+        beat::{BPM_120, QUARTER},
         sample::{SR_22050, SR_44100},
     };
 
     #[test]
     fn to_second() {
-        assert_eq!(HALF_SECOND.to_beat(Beat::new(120, 1)), QUARTER);
+        assert_eq!(HALF_SECOND.to_beat(BPM_120), QUARTER);
     }
 
     #[test]

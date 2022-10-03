@@ -29,7 +29,10 @@ impl Sample {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{beat::QUARTER, second::HALF_SECOND};
+    use crate::{
+        beat::{BPM_120, QUARTER},
+        second::HALF_SECOND,
+    };
 
     #[test]
     fn to_second() {
@@ -38,6 +41,6 @@ mod tests {
 
     #[test]
     fn to_beat() {
-        assert_eq!(SR_22050.to_beat(SR_44100, Beat::new(120, 1)), QUARTER);
+        assert_eq!(SR_22050.to_beat(SR_44100, BPM_120), QUARTER);
     }
 }
