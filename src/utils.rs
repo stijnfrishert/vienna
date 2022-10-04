@@ -1,7 +1,7 @@
 macro_rules! gen_unit {
     ($name:ident) => {
         #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, PartialOrd, Hash)]
-        pub struct $name(fraction::Fraction);
+        pub struct $name(pub(crate) fraction::Fraction);
 
         impl $name {
             pub fn new(numerator: u64, denominator: u64) -> Self {
@@ -73,31 +73,95 @@ macro_rules! gen_unit {
             }
         }
 
-        macro_rules! impl_from {
+        macro_rules! gen_impls {
             ($type:path) => {
                 impl From<$type> for $name {
                     fn from(value: $type) -> Self {
                         Self(value.into())
                     }
                 }
+
+                impl std::ops::Add<$type> for $name {
+                    type Output = Self;
+
+                    fn add(self, rhs: $type) -> Self::Output {
+                        Self(self.0 + $name::from(rhs).0)
+                    }
+                }
+
+                impl std::ops::Add<$name> for $type {
+                    type Output = $name;
+
+                    fn add(self, rhs: $name) -> Self::Output {
+                        $name($name::from(self).0 + rhs.0)
+                    }
+                }
+
+                impl std::ops::Sub<$type> for $name {
+                    type Output = Self;
+
+                    fn sub(self, rhs: $type) -> Self::Output {
+                        Self(self.0 - $name::from(rhs).0)
+                    }
+                }
+
+                impl std::ops::Sub<$name> for $type {
+                    type Output = $name;
+
+                    fn sub(self, rhs: $name) -> Self::Output {
+                        $name($name::from(self).0 - rhs.0)
+                    }
+                }
+
+                impl std::ops::Mul<$type> for $name {
+                    type Output = Self;
+
+                    fn mul(self, rhs: $type) -> Self::Output {
+                        Self(self.0 * $name::from(rhs).0)
+                    }
+                }
+
+                impl std::ops::Mul<$name> for $type {
+                    type Output = $name;
+
+                    fn mul(self, rhs: $name) -> Self::Output {
+                        $name($name::from(self).0 * rhs.0)
+                    }
+                }
+
+                impl std::ops::Div<$type> for $name {
+                    type Output = Self;
+
+                    fn div(self, rhs: $type) -> Self::Output {
+                        Self(self.0 / $name::from(rhs).0)
+                    }
+                }
+
+                impl std::ops::Div<$name> for $type {
+                    type Output = $name;
+
+                    fn div(self, rhs: $name) -> Self::Output {
+                        $name($name::from(self).0 / rhs.0)
+                    }
+                }
             };
         }
 
-        impl_from!(i8);
-        impl_from!(i16);
-        impl_from!(i32);
-        impl_from!(i64);
-        impl_from!(i128);
-        impl_from!(isize);
+        gen_impls!(i8);
+        gen_impls!(i16);
+        gen_impls!(i32);
+        gen_impls!(i64);
+        gen_impls!(i128);
+        gen_impls!(isize);
 
-        impl_from!(u8);
-        impl_from!(u16);
-        impl_from!(u32);
-        impl_from!(u64);
-        impl_from!(u128);
-        impl_from!(usize);
+        gen_impls!(u8);
+        gen_impls!(u16);
+        gen_impls!(u32);
+        gen_impls!(u64);
+        gen_impls!(u128);
+        gen_impls!(usize);
 
-        impl_from!(fraction::Fraction);
+        gen_impls!(fraction::Fraction);
 
         impl From<$name> for fraction::Fraction {
             fn from(value: $name) -> Self {

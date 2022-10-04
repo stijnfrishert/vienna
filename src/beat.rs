@@ -20,8 +20,8 @@ pub const BPM_128: Beat = Beat(Fraction::new_raw(128, 1));
 
 impl Beat {
     pub fn to_second(&self, bpm: Beat) -> Second {
-        let frac = Fraction::new(60u64, 1u64) / bpm.0;
-        Second::from(frac * self.0)
+        let frac = Beat::from(60) / bpm;
+        Second::from(frac.0 * self.0)
     }
 
     pub fn to_sample(&self, bpm: Beat, sample_rate: Sample) -> Sample {

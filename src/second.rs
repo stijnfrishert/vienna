@@ -15,12 +15,12 @@ pub const NANO_SECOND: Second = Second(Fraction::new_raw(1, 1000 * 1000 * 1000))
 
 impl Second {
     pub fn to_beat(&self, bpm: Beat) -> Beat {
-        let frac = Fraction::from(bpm) / Fraction::new(60u64, 1u64);
-        Beat::from(self.0 * frac)
+        let frac = bpm / Beat::from(60);
+        Beat::from(self.0 * frac.0)
     }
 
     pub fn to_sample(&self, sample_rate: Sample) -> Sample {
-        Sample::from(self.0 * sample_rate.into())
+        Sample::from(self.0 * sample_rate.0)
     }
 }
 
