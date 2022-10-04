@@ -88,12 +88,14 @@ macro_rules! gen_unit {
         impl_from!(i32);
         impl_from!(i64);
         impl_from!(i128);
+        impl_from!(isize);
 
         impl_from!(u8);
         impl_from!(u16);
         impl_from!(u32);
         impl_from!(u64);
         impl_from!(u128);
+        impl_from!(usize);
 
         impl_from!(fraction::Fraction);
 
