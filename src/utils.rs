@@ -7,6 +7,22 @@ macro_rules! gen_unit {
             pub fn new(numerator: u64, denominator: u64) -> Self {
                 Self(fraction::Fraction::new(numerator, denominator))
             }
+
+            pub fn min<'a>(&'a self, rhs: &'a Self) -> &'a Self {
+                if self < rhs {
+                    self
+                } else {
+                    rhs
+                }
+            }
+
+            pub fn max<'a>(&'a self, rhs: &'a Self) -> &'a Self {
+                if self > rhs {
+                    rhs
+                } else {
+                    self
+                }
+            }
         }
 
         impl std::ops::Add for $name {
