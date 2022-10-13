@@ -5,13 +5,11 @@ gen_unit!(Beat);
 
 impl Beat {
     pub const ZERO: Beat = Beat(Fraction::new_raw(0, 1));
-    pub const ONE: Beat = Beat(Fraction::new_raw(1, 1));
-    pub const TWO: Beat = Beat(Fraction::new_raw(2, 1));
 
     pub const WHOLE: Beat = Beat(Fraction::new_raw(4, 1));
     pub const HALF: Beat = Beat(Fraction::new_raw(2, 1));
     pub const HALF_TRIPLET: Beat = Beat(Fraction::new_raw(4, 3));
-    pub const QUARTER: Beat = Self::ONE;
+    pub const QUARTER: Beat = Beat(Fraction::new_raw(1, 1));
     pub const QUARTER_TRIPLET: Beat = Beat(Fraction::new_raw(2, 3));
     pub const EIGHTH: Beat = Beat(Fraction::new_raw(1, 2));
     pub const EIGHTH_TRIPLET: Beat = Beat(Fraction::new_raw(1, 3));
