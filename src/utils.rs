@@ -18,9 +18,9 @@ macro_rules! gen_unit {
 
             pub fn max<'a>(&'a self, rhs: &'a Self) -> &'a Self {
                 if self > rhs {
-                    rhs
-                } else {
                     self
+                } else {
+                    rhs
                 }
             }
         }
