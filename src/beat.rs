@@ -40,6 +40,21 @@ mod tests {
     use super::*;
 
     #[test]
+    fn constants() {
+        // triplets
+        assert_eq!(Beat::HALF_TRIPLET * 3, Beat::WHOLE);
+        assert_eq!(Beat::QUARTER_TRIPLET * 3, Beat::HALF);
+        assert_eq!(Beat::EIGHTH_TRIPLET * 3, Beat::QUARTER);
+        assert_eq!(Beat::SIXTEENTH_TRIPLET * 3, Beat::EIGHTH);
+
+        // dotted
+        assert_eq!(Beat::HALF_DOTTED, Beat::QUARTER * 3);
+        assert_eq!(Beat::QUARTER_DOTTED, Beat::EIGHTH * 3);
+        assert_eq!(Beat::EIGHTH_DOTTED, Beat::SIXTEENTH * 3);
+        assert_eq!(Beat::SIXTEENTH_DOTTED, Beat::SIXTEENTH * 3 / 2);
+    }
+
+    #[test]
     fn to_second() {
         assert_eq!(Beat::HALF.to_second(Beat::BPM_120), Second::ONE);
         assert_eq!(Beat::QUARTER.to_second(Beat::BPM_120), Second::HALF);
