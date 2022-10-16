@@ -11,8 +11,13 @@ macro_rules! gen_unit {
             pub(crate) const fn new_raw(numerator: u64, denominator: u64) -> Self {
                 Self(fraction::Fraction::new_raw(numerator, denominator))
             }
+        }
 
-            pub fn min<'a>(&'a self, rhs: &'a Self) -> &'a Self {
+        impl crate::time::Time for $name {
+            const ZERO: $name = $name::new_raw(0, 1);
+            const ONE: $name = $name::new_raw(1, 1);
+
+            fn min<'a>(&'a self, rhs: &'a Self) -> &'a Self {
                 if self < rhs {
                     self
                 } else {
@@ -20,18 +25,13 @@ macro_rules! gen_unit {
                 }
             }
 
-            pub fn max<'a>(&'a self, rhs: &'a Self) -> &'a Self {
+            fn max<'a>(&'a self, rhs: &'a Self) -> &'a Self {
                 if self > rhs {
                     self
                 } else {
                     rhs
                 }
             }
-        }
-
-        impl crate::time::Time for $name {
-            const ZERO: $name = $name::new_raw(0, 1);
-            const ONE: $name = $name::new_raw(1, 1);
         }
 
         impl std::ops::Add for $name {

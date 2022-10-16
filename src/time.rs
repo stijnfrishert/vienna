@@ -18,4 +18,10 @@ pub trait Time:
 {
     const ZERO: Self;
     const ONE: Self;
+
+    /// Return the minimum of two times
+    fn min<'a>(&'a self, rhs: &'a Self) -> &'a Self;
+
+    /// Return the maximum of two times
+    fn max<'a>(&'a self, rhs: &'a Self) -> &'a Self;
 }
