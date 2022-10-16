@@ -29,6 +29,11 @@ macro_rules! gen_unit {
             }
         }
 
+        impl crate::time::Time for $name {
+            const ZERO: $name = $name::new_raw(0, 1);
+            const ONE: $name = $name::new_raw(1, 1);
+        }
+
         impl std::ops::Add for $name {
             type Output = Self;
 

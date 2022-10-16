@@ -3,9 +3,6 @@ use crate::{beat::Beat, second::Second, utils::gen_unit};
 gen_unit!(Sample);
 
 impl Sample {
-    pub const ZERO: Sample = Sample::new_raw(0, 1);
-    pub const ONE: Sample = Sample::new_raw(1, 1);
-
     pub const SR_8000: Sample = Sample::new_raw(8000, 1);
     pub const SR_11025: Sample = Sample::new_raw(11025, 1);
     pub const SR_16000: Sample = Sample::new_raw(16000, 1);
@@ -31,6 +28,7 @@ impl Sample {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::Time;
 
     #[test]
     fn to_second() {

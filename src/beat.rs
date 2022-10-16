@@ -3,8 +3,6 @@ use crate::{sample::Sample, second::Second, utils::gen_unit};
 gen_unit!(Beat);
 
 impl Beat {
-    pub const ZERO: Beat = Beat::new_raw(0, 1);
-
     pub const WHOLE: Beat = Beat::new_raw(4, 1);
     pub const HALF_DOTTED: Beat = Beat::new_raw(3, 1);
     pub const HALF: Beat = Beat::new_raw(2, 1);
@@ -37,6 +35,7 @@ impl Beat {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::Time;
 
     #[test]
     fn constants() {

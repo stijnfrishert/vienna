@@ -3,8 +3,6 @@ use crate::{beat::Beat, sample::Sample, utils::gen_unit};
 gen_unit!(Second);
 
 impl Second {
-    pub const ZERO: Second = Second::new_raw(0, 1);
-    pub const ONE: Second = Second::new_raw(1, 1);
     pub const HALF: Second = Second::new_raw(1, 2);
     pub const QUARTER: Second = Second::new_raw(1, 4);
 
@@ -29,6 +27,7 @@ impl Second {
 mod tests {
 
     use super::*;
+    use crate::Time;
 
     #[test]
     fn to_beat() {
