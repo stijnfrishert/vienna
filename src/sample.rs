@@ -1,4 +1,4 @@
-use crate::{beat::Beat, second::Second, utils::gen_unit};
+use crate::{utils::gen_unit, Beat, Second};
 
 gen_unit!(Sample);
 
