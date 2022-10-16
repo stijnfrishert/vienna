@@ -8,6 +8,10 @@ macro_rules! gen_unit {
                 Self(fraction::Fraction::new(numerator, denominator))
             }
 
+            pub(crate) const fn new_raw(numerator: u64, denominator: u64) -> Self {
+                Self(fraction::Fraction::new_raw(numerator, denominator))
+            }
+
             pub fn min<'a>(&'a self, rhs: &'a Self) -> &'a Self {
                 if self < rhs {
                     self

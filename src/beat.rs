@@ -1,29 +1,28 @@
 use crate::{sample::Sample, second::Second, utils::gen_unit};
-use fraction::Fraction;
 
 gen_unit!(Beat);
 
 impl Beat {
-    pub const ZERO: Beat = Beat(Fraction::new_raw(0, 1));
+    pub const ZERO: Beat = Beat::new_raw(0, 1);
 
-    pub const WHOLE: Beat = Beat(Fraction::new_raw(4, 1));
-    pub const HALF_DOTTED: Beat = Beat(Fraction::new_raw(3, 1));
-    pub const HALF: Beat = Beat(Fraction::new_raw(2, 1));
-    pub const HALF_TRIPLET: Beat = Beat(Fraction::new_raw(4, 3));
-    pub const QUARTER_DOTTED: Beat = Beat(Fraction::new_raw(3, 2));
-    pub const QUARTER: Beat = Beat(Fraction::new_raw(1, 1));
-    pub const QUARTER_TRIPLET: Beat = Beat(Fraction::new_raw(2, 3));
-    pub const EIGHTH_DOTTED: Beat = Beat(Fraction::new_raw(3, 4));
-    pub const EIGHTH: Beat = Beat(Fraction::new_raw(1, 2));
-    pub const EIGHTH_TRIPLET: Beat = Beat(Fraction::new_raw(1, 3));
-    pub const SIXTEENTH_DOTTED: Beat = Beat(Fraction::new_raw(3, 8));
-    pub const SIXTEENTH: Beat = Beat(Fraction::new_raw(1, 4));
-    pub const SIXTEENTH_TRIPLET: Beat = Beat(Fraction::new_raw(1, 6));
+    pub const WHOLE: Beat = Beat::new_raw(4, 1);
+    pub const HALF_DOTTED: Beat = Beat::new_raw(3, 1);
+    pub const HALF: Beat = Beat::new_raw(2, 1);
+    pub const HALF_TRIPLET: Beat = Beat::new_raw(4, 3);
+    pub const QUARTER_DOTTED: Beat = Beat::new_raw(3, 2);
+    pub const QUARTER: Beat = Beat::new_raw(1, 1);
+    pub const QUARTER_TRIPLET: Beat = Beat::new_raw(2, 3);
+    pub const EIGHTH_DOTTED: Beat = Beat::new_raw(3, 4);
+    pub const EIGHTH: Beat = Beat::new_raw(1, 2);
+    pub const EIGHTH_TRIPLET: Beat = Beat::new_raw(1, 3);
+    pub const SIXTEENTH_DOTTED: Beat = Beat::new_raw(3, 8);
+    pub const SIXTEENTH: Beat = Beat::new_raw(1, 4);
+    pub const SIXTEENTH_TRIPLET: Beat = Beat::new_raw(1, 6);
 
-    pub const BPM_80: Beat = Beat(Fraction::new_raw(80, 1));
-    pub const BPM_100: Beat = Beat(Fraction::new_raw(100, 1));
-    pub const BPM_120: Beat = Beat(Fraction::new_raw(120, 1));
-    pub const BPM_128: Beat = Beat(Fraction::new_raw(128, 1));
+    pub const BPM_80: Beat = Beat::new_raw(80, 1);
+    pub const BPM_100: Beat = Beat::new_raw(100, 1);
+    pub const BPM_120: Beat = Beat::new_raw(120, 1);
+    pub const BPM_128: Beat = Beat::new_raw(128, 1);
 
     pub fn to_second(&self, bpm: Beat) -> Second {
         let frac = Beat::from(60) / bpm;

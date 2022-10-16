@@ -1,20 +1,19 @@
 use crate::{beat::Beat, sample::Sample, utils::gen_unit};
-use fraction::Fraction;
 
 gen_unit!(Second);
 
 impl Second {
-    pub const ZERO: Second = Second(Fraction::new_raw(0, 1));
-    pub const ONE: Second = Second(Fraction::new_raw(1, 1));
-    pub const HALF: Second = Second(Fraction::new_raw(1, 2));
-    pub const QUARTER: Second = Second(Fraction::new_raw(1, 4));
+    pub const ZERO: Second = Second::new_raw(0, 1);
+    pub const ONE: Second = Second::new_raw(1, 1);
+    pub const HALF: Second = Second::new_raw(1, 2);
+    pub const QUARTER: Second = Second::new_raw(1, 4);
 
-    pub const DAY: Second = Second(Fraction::new_raw(60 * 60 * 24, 1));
-    pub const HOUR: Second = Second(Fraction::new_raw(60 * 60, 1));
-    pub const MINUTE: Second = Second(Fraction::new_raw(60, 1));
-    pub const MILLI_SECOND: Second = Second(Fraction::new_raw(1, 1000));
-    pub const MICRO_SECOND: Second = Second(Fraction::new_raw(1, 1000 * 1000));
-    pub const NANO_SECOND: Second = Second(Fraction::new_raw(1, 1000 * 1000 * 1000));
+    pub const DAY: Second = Second::new_raw(60 * 60 * 24, 1);
+    pub const HOUR: Second = Second::new_raw(60 * 60, 1);
+    pub const MINUTE: Second = Second::new_raw(60, 1);
+    pub const MILLI_SECOND: Second = Second::new_raw(1, 1000);
+    pub const MICRO_SECOND: Second = Second::new_raw(1, 1000 * 1000);
+    pub const NANO_SECOND: Second = Second::new_raw(1, 1000 * 1000 * 1000);
 
     pub fn to_beat(&self, bpm: Beat) -> Beat {
         let frac = bpm / Beat::from(60);
