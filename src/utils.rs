@@ -29,6 +29,10 @@ macro_rules! gen_unit {
                 Self(self.0.ceil())
             }
 
+            fn to_integer(&self) -> i64 {
+                fraction::ToPrimitive::to_i64(&self.0).unwrap()
+            }
+
             fn min<'a>(&'a self, rhs: &'a Self) -> &'a Self {
                 if self < rhs {
                     self

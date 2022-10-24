@@ -28,6 +28,9 @@ pub trait Time:
     /// Round toward the integer above
     fn ceil(&self) -> Self;
 
+    /// Convert the time to a truncated integer
+    fn to_integer(&self) -> i64;
+
     /// Return the minimum of two times
     fn min<'a>(&'a self, rhs: &'a Self) -> &'a Self;
 
