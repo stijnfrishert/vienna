@@ -17,6 +17,18 @@ macro_rules! gen_unit {
             const ZERO: $name = $name::new_raw(0, 1);
             const ONE: $name = $name::new_raw(1, 1);
 
+            fn round(&self) -> Self {
+                Self(self.0.round())
+            }
+
+            fn floor(&self) -> Self {
+                Self(self.0.floor())
+            }
+
+            fn ceil(&self) -> Self {
+                Self(self.0.ceil())
+            }
+
             fn min<'a>(&'a self, rhs: &'a Self) -> &'a Self {
                 if self < rhs {
                     self
