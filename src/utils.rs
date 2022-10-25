@@ -202,6 +202,9 @@ macro_rules! gen_unit {
         gen_impls!(u128);
         gen_impls!(usize);
 
+        gen_impls!(f32);
+        gen_impls!(f64);
+
         gen_impls!(fraction::Fraction);
 
         impl From<$name> for fraction::Fraction {

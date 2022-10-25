@@ -15,6 +15,20 @@ pub trait Time:
     + PartialEq
     + Eq
     + PartialOrd
+    + From<i8>
+    + From<i16>
+    + From<i32>
+    + From<i64>
+    + From<i128>
+    + From<isize>
+    + From<u8>
+    + From<u16>
+    + From<u32>
+    + From<u64>
+    + From<u128>
+    + From<usize>
+    + From<f32>
+    + From<f64>
 {
     const ZERO: Self;
     const ONE: Self;
