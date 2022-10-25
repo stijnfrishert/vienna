@@ -122,6 +122,12 @@ macro_rules! gen_unit {
                     }
                 }
 
+                impl<'a> From<&'a $type> for $name {
+                    fn from(value: &'a $type) -> Self {
+                        Self((*value).into())
+                    }
+                }
+
                 impl std::ops::Add<$type> for $name {
                     type Output = Self;
 
