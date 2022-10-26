@@ -211,11 +211,15 @@ macro_rules! gen_unit {
         gen_impls!(f32);
         gen_impls!(f64);
 
-        gen_impls!(fraction::Fraction);
-
         impl From<$name> for fraction::Fraction {
             fn from(value: $name) -> Self {
                 value.0
+            }
+        }
+
+        impl From<fraction::Fraction> for $name {
+            fn from(value: fraction::Fraction) -> Self {
+                Self(value)
             }
         }
     };
