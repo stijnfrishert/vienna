@@ -33,6 +33,14 @@ macro_rules! gen_unit {
                 fraction::ToPrimitive::to_i64(&self.0).unwrap()
             }
 
+            fn to_f32(&self) -> f32 {
+                fraction::ToPrimitive::to_f32(&self.0).unwrap()
+            }
+
+            fn to_f64(&self) -> f64 {
+                fraction::ToPrimitive::to_f64(&self.0).unwrap()
+            }
+
             fn min<'a>(&'a self, rhs: &'a Self) -> &'a Self {
                 if self < rhs {
                     self
@@ -220,6 +228,22 @@ macro_rules! gen_unit {
         impl From<fraction::Fraction> for $name {
             fn from(value: fraction::Fraction) -> Self {
                 Self(value)
+            }
+        }
+
+        impl TryFrom<$name> for f32 {
+            type Error = crate::OutOfRange;
+
+            fn try_from(value: $name) -> Result<Self, Self::Error> {
+                fraction::ToPrimitive::to_f32(&value.0).ok_or(crate::OutOfRange)
+            }
+        }
+
+        impl TryFrom<$name> for f64 {
+            type Error = crate::OutOfRange;
+
+            fn try_from(value: $name) -> Result<Self, Self::Error> {
+                fraction::ToPrimitive::to_f64(&value.0).ok_or(crate::OutOfRange)
             }
         }
     };

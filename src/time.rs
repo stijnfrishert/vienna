@@ -45,6 +45,12 @@ pub trait Time:
     /// Convert the time to a truncated integer
     fn to_integer(&self) -> i64;
 
+    /// Convert the time to a 32-bit floating pointer value
+    fn to_f32(&self) -> f32;
+
+    /// Convert the time to a 64-bit floating pointer value
+    fn to_f64(&self) -> f64;
+
     /// Return the minimum of two times
     fn min<'a>(&'a self, rhs: &'a Self) -> &'a Self;
 
