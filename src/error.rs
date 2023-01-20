@@ -10,6 +10,6 @@ impl Error for OutOfRange {}
 
 impl Display for OutOfRange {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
-        write!(f, "{:?}", self)
+        write!(f, "{self:?}")
     }
 }
