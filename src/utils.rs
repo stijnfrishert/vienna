@@ -1,6 +1,6 @@
 macro_rules! gen_unit {
     ($name:ident) => {
-        #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, PartialOrd, Hash)]
+        #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Hash)]
         #[cfg_attr(
             feature = "serde",
             derive(serde::Serialize, serde::Deserialize),
@@ -124,6 +124,18 @@ macro_rules! gen_unit {
 
             fn neg(self) -> Self::Output {
                 Self(-self.0)
+            }
+        }
+
+        impl std::fmt::Debug for $name {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                write!(f, "{:?}", self.0)
+            }
+        }
+
+        impl std::fmt::Display for $name {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                write!(f, "{}", self.0)
             }
         }
 

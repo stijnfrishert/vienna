@@ -55,4 +55,10 @@ mod tests {
             Beat::EIGHTH
         );
     }
+
+    #[test]
+    fn display() {
+        assert_eq!(&format!("{}", Sample::new(4, 1)), "4");
+        assert_eq!(&format!("{}", Sample::new(1, 4)), "1/4");
+    }
 }
