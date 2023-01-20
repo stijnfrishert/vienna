@@ -1,10 +1,11 @@
-#[cfg(feature = "serde")]
-use serde::{Deserialize, Serialize};
-
 macro_rules! gen_unit {
     ($name:ident) => {
         #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, PartialOrd, Hash)]
-        #[cfg_attr(feature = "serde", derive(Serialize, Deserialize), serde(transparent))]
+        #[cfg_attr(
+            feature = "serde",
+            derive(serde::Serialize, serde::Deserialize),
+            serde(transparent)
+        )]
         pub struct $name(pub(crate) fraction::Fraction);
 
         impl $name {
